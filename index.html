@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Screensaver</title>
+	<style type="text/css">
+	html, body, .container { margin: 0; padding: 0; height: 100%; }
+
+	.cell {
+		box-sizing: border-box;
+
+		display: block;
+		display: flex;
+		align-items: center;
+		
+		height: 50%;
+		width: 50%;
+		float: left;
+		color: white;
+		font: bold 1em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-shadow: 0 0.025em 0 rgba(0,0,0,0.1);
+		letter-spacing: -0.05em;
+		word-break: break-word;
+		font-size: 60px;
+		padding: 0.5em;
+
+		transition: all .4s linear;
+	}
+
+	.cell:hover {
+		cursor: pointer;
+		text-shadow: 0 0.025em 0 rgba(0,0,0,0.8);
+	}
+
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+	</div>
+
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+	<script>
+
+	var colors = [
+		"rgb(219, 68, 55)",
+		"rgb(15, 157, 88)",
+		"rgb(66, 133, 244)",
+		"rgb(244, 180, 0)"
+	];
+
+	var headlines = [];
+	getHeadlines(function(d) {
+		// console.log(d);
+
+		for( i in d.responseData.feed.entries )
+		{
+			var e = d.responseData.feed.entries[i];
+			headlines.push(e);
+			console.log( e.title );
+		}
+
+		plotHeadlines();
+	});
+
+	var current = 0;
+	function plotHeadlines()
+	{
+		var numContainers = $(".container > .cell").length;
+		for( var i = 0; i < numContainers; i++ )
+		{
+			var $targetContainer = $(".container > .cell:eq("+i+")");
+			$targetContainer.on('click', function() { document.location.href = headlines[i].link; });
+			$targetContainer.css('background-color', colors[ getRandomInt(0, colors.length-1) ]);
+			$targetContainer.text( headlines[i].title );
+		}
+	}
+
+	function getHeadlines(callback) 
+	{
+
+		$.ajax({
+			url: "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=http://tweakers.mobi/rss/nieuws",			
+			crossDomain: true,
+			dataType: 'jsonp',
+			success: callback
+		});
+
+	}
+
+
+	function getRandomInt(min, max) {
+	    return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+	</script>
+</body>
+</html>
