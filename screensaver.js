@@ -3,7 +3,7 @@
 	var colors = [
 			"rgb(219, 68, 55)", // Les
 			"rgb(15, 157, 88)", // Couleur
-			"rgb(66, 133, 244)", // Des 
+			"rgb(66, 133, 244)", // Des
 			"rgb(244, 180, 0)" // Google
 		],
 		headlines = [],
@@ -17,7 +17,7 @@
 	getHeadlines(function(d) {
 
 		for( i in d.responseData.feed.entries ) {
-			
+
 			var e = d.responseData.feed.entries[i];
 
 			var headline = {
@@ -29,35 +29,42 @@
 		}
 
 		init();
+
 	});
 
 	function init() {
+
 		plotFirstHeadlines();
 		startLoop();
+
 	}
-	
+
 	function plotFirstHeadlines() {
+
 		var numContainers = $(".container > .cell").length;
 		for( var i = 0; i < numContainers; i++ ) {
 			var $targetContainer = $(".container > .cell:eq("+i+")");
-			plotHeadline($targetContainer, headlines[i]);	
-			headlineIndex = i;		
+			plotHeadline($targetContainer, headlines[i]);
+			headlineIndex = i;
 		}
+
 	}
 
 	function plotHeadline($targetContainer, headline) {
+
 		$targetContainer.on('click', function() { document.location.href = headline.link; });
 		$targetContainer.css('background-color', colors[ getRandomInt(0, colors.length-1) ]);
 
 		$("span", $targetContainer).animate({opacity: 0}, 400, function() {
 			$("span", $targetContainer).text( headline.title ).animate({opacity: 1}, 400);
-		});		
+		});
+
 	}
 
 	function getHeadlines(callback) {
 
 		$.ajax({
-			url: HEADLINES_SOURCE_URL,			
+			url: HEADLINES_SOURCE_URL,
 			crossDomain: true,
 			dataType: 'jsonp',
 			success: callback
@@ -66,7 +73,9 @@
 	}
 
 	function getRandomInt(min, max) {
+
 	    return Math.floor(Math.random() * (max - min + 1)) + min;
+			
 	}
 
 	function startLoop() {
@@ -80,8 +89,8 @@
 
 			var randomContainer = getRandomInt(0, $(".container > .cell").length);
 			var $targetContainer = $(".container > .cell:eq("+randomContainer+")");
-			
-			headlineIndex++;			
+
+			headlineIndex++;
 			plotHeadline($targetContainer, headlines[headlineIndex%headlines.length]);
 			loopNext();
 		}
