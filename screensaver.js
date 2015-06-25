@@ -12,7 +12,7 @@
 		TICKER_DELAY = 5000;
 
 
-	var HEADLINES_SOURCE_URL = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&q=http://tweakers.mobi/rss/nieuws";
+	var HEADLINES_SOURCE_URL = "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&scoring=h&q=http://tweakers.mobi/rss/nieuws";
 
 	getHeadlines(function(d) {
 
