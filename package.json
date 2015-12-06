@@ -8,8 +8,11 @@
     "Denver Sessink <denver@dsinternet.nl>"
   ],
   "devDependencies": {
-    "gulp": "^3.8.10",
+    "gulp": "^3.9.0",
     "gulp-jshint": "~1.4.0",
     "jshint-stylish": "~0.1.5"
+  },
+  "scripts": {
+    "gulp": "gulp"
   }
 }
