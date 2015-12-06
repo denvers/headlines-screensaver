@@ -1,0 +1,15 @@
+{
+  "name": "headlines-screensaver",
+  "description": "Google inspired screensaver shows Tweakers.net headlines",
+  "version": "2.0.0",
+  "homepage": "https://github.com/denvers/headlines-screensaver",
+  "repository": "git://github.com/denvers/headlines-screensaver.git",
+  "contributors": [
+    "Denver Sessink <denver@dsinternet.nl>"
+  ],
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-jshint": "~1.4.0",
+    "jshint-stylish": "~0.1.5"
+  }
+}
