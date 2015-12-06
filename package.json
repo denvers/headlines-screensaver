@@ -9,7 +9,6 @@
   ],
   "devDependencies": {
     "gulp": "^3.8.10",
-    "gulp-cli": "^1.0.0",
     "gulp-jshint": "~1.4.0",
     "jshint-stylish": "~0.1.5"
   }
