@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/denvers/headlines-screensaver.svg?branch=master)](https://travis-ci.org/denvers/headlines-screensaver)
+
 # Google inspired Headlines Dashboard
 Screensaver which shows actual headlines of Tweakers.net
 
